@@ -1,5 +1,5 @@
 
-import {ContractDeployer, EventListenerServer, runAnvil, stopAnvil} from 'integration-tests';
+import {ContractDeployer, EventListenerServer, runAnvil, stopAnvil} from 'integration-tests'
 import { bytecode, abi } from './contracts/out/Contract.sol/Contract.json';
 import {privateKeyToAccount} from "viem/accounts";
 
@@ -9,7 +9,7 @@ const bytecode_formatted: `0x${string}` = `0x${bytecode.object.replace(/^0x/, ''
 const privateKey = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
 const accountAddress = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266";
 
-const c = new ContractDeployer(abi, bytecode_formatted, privateKey, accountAddress, 8000);
+const c = new ContractDeployer(abi, bytecode_formatted, privateKey, accountAddress, 8000, "0x0000000000000000000000000000000000000000");
 
 async function deployAndInteract() {
   await c.deployContract();

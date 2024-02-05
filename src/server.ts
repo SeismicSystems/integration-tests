@@ -31,6 +31,8 @@ export class EventListenerServer {
       address: address,
       abi: abi,
       onLogs: (logs) => {
+        console.log(logs);
+        console.log("Test:" + logs[0].data)
         this._variable = logs[0].data; // Assuming logs contain the variable value you're interested in
       },
     });

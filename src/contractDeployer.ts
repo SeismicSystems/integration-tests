@@ -2,6 +2,7 @@ import { privateKeyToAccount } from "viem/accounts";
 import { getContractAddress, http } from "viem";
 import { createTestClient, publicActions, walletActions } from "viem";
 import {foundry} from "viem/chains";
+import { Address } from "viem";
 
 
 export class ContractDeployer {
@@ -17,8 +18,11 @@ export class ContractDeployer {
     private bytecode: `0x${string}`;
     private privateKey: `0x${string}`;
     private publicAddress: `0x${string}`;
+    private contractArgs: any;
 
-    constructor(abi: any, bytecode: `0x${string}`, privateKey: `0x${string}`, publicAddress: `0x${string}`, port: number) {
+
+    
+    constructor(abi: any, bytecode: `0x${string}`, privateKey: `0x${string}`, publicAddress: `0x${string}`, port: number, args: any) {
         this.abi = abi;
         this.bytecode = bytecode;
         this.privateKey = privateKey;
@@ -30,6 +34,7 @@ export class ContractDeployer {
           })
             .extend(publicActions)
             .extend(walletActions);
+            this.contractArgs = args;
     }
 
     async deployContract() {
@@ -37,7 +42,7 @@ export class ContractDeployer {
         abi: this.abi,
         bytecode: this.bytecode,
         account: privateKeyToAccount(this.privateKey),
-        args:[],
+        args:[this.contractArgs],
       });
   
       const nonce = BigInt(
