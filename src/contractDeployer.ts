@@ -56,6 +56,27 @@ export class ContractDeployer {
         nonce: nonce - BigInt(1),
       });
     }
+
+    async deployContractWithoutArguments() {
+      const contract = await this.client.deployContract({
+        abi: this.abi,
+        bytecode: this.bytecode,
+        account: privateKeyToAccount(this.privateKey),
+        args:[],
+      });
+  
+      const nonce = BigInt(
+        await this.client.getTransactionCount({
+          address: this.publicAddress,
+        }),
+      );
+  
+      this.deployedAddress = getContractAddress({
+        from: this.publicAddress,
+        nonce: nonce - BigInt(1),
+      });
+    }
+  
   
     getDeployedAddress() {
       if (this.deployedAddress === null) {

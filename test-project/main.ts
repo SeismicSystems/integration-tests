@@ -1,5 +1,5 @@
 
-import {ContractDeployer, EventListenerServer, runAnvil, stopAnvil} from 'integration-tests'
+import {ContractDeployer, EventListenerServer, runAnvil, stopAnvil} from 'integration-tests';
 import { bytecode, abi } from './contracts/out/Contract.sol/Contract.json';
 import {privateKeyToAccount} from "viem/accounts";
 
