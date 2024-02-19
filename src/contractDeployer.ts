@@ -1,6 +1,6 @@
 import { privateKeyToAccount } from "viem/accounts";
 import { getContractAddress, http } from "viem";
-import { createTestClient, publicActions, walletActions } from "viem";
+import { createTestClient, createWalletClient, publicActions, walletActions } from "viem";
 import {foundry} from "viem/chains";
 import { Address } from "viem";
 
@@ -14,6 +14,10 @@ export class ContractDeployer {
       })
         .extend(publicActions)
         .extend(walletActions);
+    public walletClient = createWalletClient({
+        chain: foundry,
+        transport: http("http://localhost:8545"),
+      })
     private abi: any;
     private bytecode: `0x${string}`;
     private privateKey: `0x${string}`;
@@ -27,6 +31,10 @@ export class ContractDeployer {
         this.bytecode = bytecode;
         this.privateKey = privateKey;
         this.publicAddress = publicAddress;
+        this.walletClient = createWalletClient({
+            chain: foundry,
+            transport: http(`http://localhost:${port}`),
+          });
         this.client = createTestClient({
             chain: foundry,
             mode: "anvil",
@@ -58,11 +66,11 @@ export class ContractDeployer {
     }
 
     async deployContractWithoutArguments() {
-      const contract = await this.client.deployContract({
+      const contract = await this.walletClient.deployContract({
         abi: this.abi,
         bytecode: this.bytecode,
         account: privateKeyToAccount(this.privateKey),
-        args:[],
+        args: [],
       });
   
       const nonce = BigInt(
