@@ -1,6 +1,6 @@
 {
   "name": "seismic-integration-tests",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Test harness for writing integration tests for smart contracts interacting with off-chain components",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
