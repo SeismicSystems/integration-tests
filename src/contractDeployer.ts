@@ -22,7 +22,7 @@ export class ContractDeployer {
     private bytecode: `0x${string}`;
     private privateKey: `0x${string}`;
     private publicAddress: `0x${string}`;
-    private contractArgs: any;
+    private contractArgs: any[];
 
 
     
