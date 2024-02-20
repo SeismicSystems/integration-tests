@@ -2,7 +2,6 @@ import { privateKeyToAccount } from "viem/accounts";
 import { getContractAddress, http } from "viem";
 import { createTestClient, createWalletClient, publicActions, walletActions } from "viem";
 import {foundry} from "viem/chains";
-import { Address } from "viem";
 
 
 export class ContractDeployer {
