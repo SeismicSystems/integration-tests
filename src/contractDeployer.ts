@@ -26,7 +26,7 @@ export class ContractDeployer {
 
 
     
-    constructor(abi: any, bytecode: `0x${string}`, privateKey: `0x${string}`, publicAddress: `0x${string}`, port: number, args: any) {
+    constructor(abi: any, bytecode: `0x${string}`, privateKey: `0x${string}`, publicAddress: `0x${string}`, port: number, args: any[]) {
         this.abi = abi;
         this.bytecode = bytecode;
         this.privateKey = privateKey;
@@ -50,7 +50,7 @@ export class ContractDeployer {
         abi: this.abi,
         bytecode: this.bytecode,
         account: privateKeyToAccount(this.privateKey),
-        args:[this.contractArgs],
+        args:this.contractArgs,
       });
   
       const nonce = BigInt(
