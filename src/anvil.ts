@@ -9,7 +9,7 @@ export function runAnvil(port: number) {
 }
 
 export async function stopAnvil(port: number) {
-    exec(`kill -9 $(lsof -ti:${port})`, (error) => {
+    exec(`./src/killanvil.sh ${port}`, (error) => {
       if (error) {
         console.log(`exec error: ${error}`);
       }
